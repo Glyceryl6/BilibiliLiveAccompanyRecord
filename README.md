@@ -70,7 +70,7 @@
    对象名根据上述Json信息从上到下说明：
 
    |         对象        |   类型   |           说明           |
-   |:------|:----------------------:|:------|
+   |:------:|:----------------------:|:------:|
    | target_id          |  int   |         主播的uid         |
    | medal_name         | string |          勋章名字          |
    | medal_color_start  |  int   |   勋章渐变起始部分颜色（十进制RGB）   |
@@ -83,18 +83,18 @@
    | next_intimacy      |  int   |        该等级总亲密度         |
    | today_feed         |  int   |         今日亲密度          |
    | day_limit          |  int   |        今日最大亲密度         |
-   | guard_icon         |  string   |        大航海图标链接         |
-   | honor_icon         |  string   |                        |
-   | target_name          |  string   |          主播昵称          |
-   | target_icon          |  string   |        主播头像图片链接        |
-   | link          |  string   |         主播个人空间         |
+   | guard_icon         | string |        大航海图标链接         |
+   | honor_icon         | string |                        |
+   | target_name          | string |          主播昵称          |
+   | target_icon          | string |        主播头像图片链接        |
+   | link          | string |         主播个人空间         |
    | live_status          |  int   |   主播开播状态（1：开播，0：未开播）   |
    | official          |  int   |   是否有官方的小闪电（1：有，0：无）   |
    | count          |  int   |         用户勋章总数         |
    | close_space_medal          |  int   |   是否关闭粉丝勋章墙（1：是，0：否）   |
    | only_show_wearing          |  int   | 是否只显示当前所佩戴的勋章（1：是，0：否） |
-   | name          |  string   |          用户昵称          |
-   | icon          |  string   |        用户头像图片链接        |
+   | name          | string |          用户昵称          |
+   | icon          | string |        用户头像图片链接        |
    | uid          |  int   |         用户uid          |
    | level          |  int   |          用户等级          |
 
@@ -103,7 +103,7 @@
 2. 获取主站个人中心勋章列表信息
    - 调用地址：https://api.live.bilibili.com/fans_medal/v1/fans_medal/get_home_medals
    - | 字段  | 必选  |   类型    |             说明              |
-     |:---:|:-------:|:---------------------------:|:----|
+     |:---:|:-------:|:---------------------------:|:----:|
      | uid |  否  |   int   | 用户的uid，可有可无，填写别的uid显示的也是自己的 |
      | source |  否  |   int   |             未知              |
      | need_rank |  否  | boolean |        是否需要排序，具体作用未知        |
@@ -171,11 +171,11 @@
 
    由于大部分的Json对象在1中有介绍，故此处仅介绍一些重要的：
 
-   |         对象        |   类型   |                 说明                 |
-   |:------|:----------------------------------:|:------|
-   | source         | int | 积分，若未上舰，则为亲密度的总和，若已上舰，则为5千万+消费电池总数 |
-   | receive_time          |  string   |         勋章的获取时间，包含年月日和时分秒          |
-   | is_lighted         | string |          勋章状态（1：点亮，0：熄灭）           |
+   | 对象           |   类型   |               说明               |
+   |:------:|:------------------------------:|:------:|
+   | score            |  int   | 积分，若未上舰，则为亲密度的总和，否则为5千万+消费电池总数 |
+   | receive_time | string |       勋章的获取时间，包含年月日和时分秒        |
+   | is_lighted   | string |        勋章状态（1：点亮，0：熄灭）         |
 
 3. 获取自己在某个主播直播间的大航海信息
    - 调用地址：https://api.live.bilibili.com/xlive/general-interface/v1/guard/GuardActive
@@ -366,7 +366,7 @@
 由于大部分的Json对象在1中有介绍，故此处仅介绍一些重要的：
 
    |         对象        |   类型   |          说明          |
-   |:------:|:--------------------:|:------|
+   |:------:|:--------------------:|:------:|
    | watch_time         |  int   | 在该直播间累计观看时间的时间戳，单位为秒 |
    | send_bar          |  int   |    在该直播间累计发送的弹幕数量    |
    | guard_extra_gold         |  int   | 开通大航海之前在该直播间所消费的电池总数 |

@@ -13,6 +13,7 @@ namespace BilibiliLiveAccompanyRecord {
 
         public Form1() {
             InitializeComponent();
+            dataGridView1.Columns[2].DefaultCellStyle.ForeColor = Color.White;
         }
 
         private void QueryButton_Click(object sender, EventArgs e) {
@@ -78,10 +79,13 @@ namespace BilibiliLiveAccompanyRecord {
                 //非本浏览器所登录的账号最多只能获取到前200个粉丝勋章的信息。
                 for (int i = 0; i < medalList.Count; i++) {
                     JObject tempObject = JObject.Parse(medalList[i].ToString());
+                    int medalColor = int.Parse(tempObject["medal_info"]["medal_color_start"].ToString());
                     dataGridView1[1, i].Value = tempObject["target_name"]?.ToString();
                     dataGridView1[2, i].Value = tempObject["medal_info"]?["medal_name"]?.ToString();
                     dataGridView1[3, i].Value = int.Parse(tempObject["medal_info"]["level"].ToString());
                     dataGridView1[4, i].Value = int.Parse(tempObject["medal_info"]["medal_id"].ToString());
+                    dataGridView1[2, i].Style.BackColor = Color.FromArgb((medalColor >> 16) & 255, 
+                        (medalColor >> 8) & 255, medalColor & 255);
                     string currentIntimacy = tempObject["medal_info"]?["intimacy"]?.ToString();
                     string nextIntimacy = tempObject["medal_info"]?["next_intimacy"]?.ToString();
                     dataGridView1[5, i].Value = currentIntimacy + "/" + nextIntimacy;
@@ -112,15 +116,11 @@ namespace BilibiliLiveAccompanyRecord {
                         foreach (JToken token in jArray) {
                             JObject tempObject = JObject.Parse(token.ToString());
                             int medalId = int.Parse(tempObject["medal_id"].ToString());
-                            int medalLevel = int.Parse(tempObject["level"].ToString());
                             string receiveTime = tempObject["receive_time"]?.ToString();
                             int totalScore = int.Parse(tempObject["score"].ToString());
                             bool isLighted = tempObject["is_lighted"].ToString().Equals("1");
                             for (int j = 0; j < medalList.Count; j++) {
                                 if (int.Parse(dataGridView1[4, j].Value.ToString()) == medalId) {
-                                    dataGridView1[2, j].Style.ForeColor = Color.White;
-                                    dataGridView1[2, j].Style.BackColor =
-                                        GetMedalColorByLevel(medalLevel, isLighted);
                                     dataGridView1[7, j].Value = receiveTime;
                                     dataGridView1[8, j].Value = totalScore;
                                     dataGridView1[9, j].Value = isLighted ? "点亮" : "熄灭";
@@ -172,32 +172,6 @@ namespace BilibiliLiveAccompanyRecord {
                 return list != null ? JArray.Parse(list) : null;
             }
             return null;
-        }
-
-        //根据勋章等级，将单元格的背景颜色改成对应的颜色
-        private static Color GetMedalColorByLevel(int medalLevel, bool isLighted) {
-            switch (isLighted) {
-                case true when medalLevel >= 1 && medalLevel <= 4:
-                    return Color.FromArgb(92, 150, 142);
-                case true when medalLevel >= 5 && medalLevel <= 8:
-                    return Color.FromArgb(93, 123, 158);
-                case true when medalLevel >= 9 && medalLevel <= 12:
-                    return Color.FromArgb(141, 124, 166);
-                case true when medalLevel >= 13 && medalLevel <= 16:
-                    return Color.FromArgb(190, 102, 134);
-                case true when medalLevel >= 17 && medalLevel <= 20:
-                    return Color.FromArgb(199, 157, 36);
-                case true when medalLevel >= 21 && medalLevel <= 24:
-                    return Color.FromArgb(26, 84, 75);
-                case true when medalLevel >= 25 && medalLevel <= 28:
-                    return Color.FromArgb(6, 21, 76);
-                case true when medalLevel >= 29 && medalLevel <= 32:
-                    return Color.FromArgb(45, 8, 85);
-                case true when medalLevel >= 33 && medalLevel <= 36:
-                    return Color.FromArgb(122, 4, 35);
-                case true: return Color.FromArgb(255, 97, 11);
-                default: return Color.FromArgb(192, 192, 192);
-            }
         }
 
         //计算在大航海中消费的电池
