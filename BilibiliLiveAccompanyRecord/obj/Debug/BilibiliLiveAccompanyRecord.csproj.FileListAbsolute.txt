@@ -1,0 +1,14 @@
+C:\Users\glyceryl\Desktop\CSharpPlace\BilibiliLiveAccompanyRecord\BilibiliLiveAccompanyRecord\bin\Debug\BilibiliLiveAccompanyRecord.exe.config
+C:\Users\glyceryl\Desktop\CSharpPlace\BilibiliLiveAccompanyRecord\BilibiliLiveAccompanyRecord\bin\Debug\BilibiliLiveAccompanyRecord.exe
+C:\Users\glyceryl\Desktop\CSharpPlace\BilibiliLiveAccompanyRecord\BilibiliLiveAccompanyRecord\bin\Debug\BilibiliLiveAccompanyRecord.pdb
+C:\Users\glyceryl\Desktop\CSharpPlace\BilibiliLiveAccompanyRecord\BilibiliLiveAccompanyRecord\obj\Debug\BilibiliLiveAccompanyRecord.csproj.AssemblyReference.cache
+C:\Users\glyceryl\Desktop\CSharpPlace\BilibiliLiveAccompanyRecord\BilibiliLiveAccompanyRecord\obj\Debug\BilibiliLiveAccompanyRecord.csproj.SuggestedBindingRedirects.cache
+C:\Users\glyceryl\Desktop\CSharpPlace\BilibiliLiveAccompanyRecord\BilibiliLiveAccompanyRecord\obj\Debug\BilibiliLiveAccompanyRecord.Properties.Resources.resources
+C:\Users\glyceryl\Desktop\CSharpPlace\BilibiliLiveAccompanyRecord\BilibiliLiveAccompanyRecord\obj\Debug\BilibiliLiveAccompanyRecord.csproj.GenerateResource.cache
+C:\Users\glyceryl\Desktop\CSharpPlace\BilibiliLiveAccompanyRecord\BilibiliLiveAccompanyRecord\obj\Debug\BilibiliLiveAccompanyRecord.csproj.CoreCompileInputs.cache
+C:\Users\glyceryl\Desktop\CSharpPlace\BilibiliLiveAccompanyRecord\BilibiliLiveAccompanyRecord\obj\Debug\BilibiliLiveAccompanyRecord.exe
+C:\Users\glyceryl\Desktop\CSharpPlace\BilibiliLiveAccompanyRecord\BilibiliLiveAccompanyRecord\obj\Debug\BilibiliLiveAccompanyRecord.pdb
+C:\Users\glyceryl\Desktop\CSharpPlace\BilibiliLiveAccompanyRecord\BilibiliLiveAccompanyRecord\obj\Debug\BilibiliLiveAccompanyRecord.Form1.resources
+C:\Users\glyceryl\Desktop\CSharpPlace\BilibiliLiveAccompanyRecord\BilibiliLiveAccompanyRecord\bin\Debug\Newtonsoft.Json.dll
+C:\Users\glyceryl\Desktop\CSharpPlace\BilibiliLiveAccompanyRecord\BilibiliLiveAccompanyRecord\bin\Debug\Newtonsoft.Json.xml
+C:\Users\glyceryl\Desktop\CSharpPlace\BilibiliLiveAccompanyRecord\BilibiliLiveAccompanyRecord\obj\Debug\BilibiliLiveAccompanyRecord.csproj.CopyComplete
