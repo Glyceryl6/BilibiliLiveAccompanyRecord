@@ -12,7 +12,7 @@
 3. 如果输入的uid是本人，则工具中所列出的信息都能查询到。如果是其它用户的uid，在该用户公开了粉丝勋章墙的情况下，则最多只能获取到前6列（不包含序号）的信息，且如果该用户的勋章超过了200个，则只能查询到前200个等级最高的勋章的信息（一个账号最多能有一千个粉丝勋章）。
 
 ## 技术细节
-此程序主要用到了如下的API：
+**此程序主要用到了如下的API：**
 1. 获取粉丝勋章墙
     - 调用地址：https://api.live.bilibili.com/xlive/web-ucenter/user/MedalWall
     - | 字段  | 必选  | 类型  |    说明    |
@@ -110,64 +110,64 @@
      | master_status |  否  |   int   | 佩戴状态（1：佩戴，0：不佩戴，没有参数则默认全选）  |
      | page |  否  |   int   |      勋章的页数，无此参数则默认为第一页      |
 
-<details>
+   <details>
    <summary style="font-weight: bold">访问之后会返回如下结果</summary>
 
-```json
-{
-   "code": 0,
-   "msg": "主站个人中心勋章列表",
-   "message": "主站个人中心勋章列表",
-   "data": {
-      "max": 1000,
-      "cnt": 147,
-      "curr_page": 1,
-      "total_page": 6,
-      "list": [
-         {
-            "uid": ???,
-            "target_id": ???,
-            "medal_id": ???,
-            "score": 50010560,
-            "level": 24,
-            "intimacy": 3060,
-            "status": 1,
-            "source": 1,
-            "receive_channel": ???,
-            "is_receive": 1,
-            "master_status": 1,
-            "receive_time": "???",
-            "today_intimacy": 0,
-            "last_wear_time": 1695743999,
-            "is_lighted": 1,
-            "medal_level": 24,
-            "next_intimacy": 7500,
-            "day_limit": 250000,
-            "today_feed": 0,
-            "medal_name": "???",
-            "master_available": 1,
-            "guard_type": 3,
-            "lpl_status": 0,
-            "can_delete": false,
-            "target_name": "???",
-            "target_face": "???",
-            "live_stream_status": 0,
-            "icon_code": 0,
-            "icon_text": "",
-            "rank": "-",
-            "medal_color": 1725515,
-            "medal_color_start": 1725515,
-            "medal_color_end": 5414290,
-            "guard_level": 3,
-            "medal_color_border": 6809855,
-            "honor_icon": "",
-            "guard_icon": "???"
-         }
-      ]
+   ```json
+   {
+      "code": 0,
+      "msg": "主站个人中心勋章列表",
+      "message": "主站个人中心勋章列表",
+      "data": {
+         "max": 1000,
+         "cnt": 147,
+         "curr_page": 1,
+         "total_page": 6,
+         "list": [
+            {
+               "uid": ???,
+               "target_id": ???,
+               "medal_id": ???,
+               "score": 50010560,
+               "level": 24,
+               "intimacy": 3060,
+               "status": 1,
+               "source": 1,
+               "receive_channel": ???,
+               "is_receive": 1,
+               "master_status": 1,
+               "receive_time": "???",
+               "today_intimacy": 0,
+               "last_wear_time": 1695743999,
+               "is_lighted": 1,
+               "medal_level": 24,
+               "next_intimacy": 7500,
+               "day_limit": 250000,
+               "today_feed": 0,
+               "medal_name": "???",
+               "master_available": 1,
+               "guard_type": 3,
+               "lpl_status": 0,
+               "can_delete": false,
+               "target_name": "???",
+               "target_face": "???",
+               "live_stream_status": 0,
+               "icon_code": 0,
+               "icon_text": "",
+               "rank": "-",
+               "medal_color": 1725515,
+               "medal_color_start": 1725515,
+               "medal_color_end": 5414290,
+               "guard_level": 3,
+               "medal_color_border": 6809855,
+               "honor_icon": "",
+               "guard_icon": "???"
+            }
+         ]
+      }
    }
-}
-```
-</details>
+   ```
+   </details>
 
    由于大部分的Json对象在1中有介绍，故此处仅介绍一些重要的：
 
@@ -180,195 +180,193 @@
 3. 获取自己在某个主播直播间的大航海信息
    - 调用地址：https://api.live.bilibili.com/xlive/general-interface/v1/guard/GuardActive
    - | 字段  | 必选  |   类型    |     说明     |
-     |:---:|:-------:|:----------:|:----|
+     |:---:|:-------:|:----------:|:-----:|
      | ruid |  是  |   string   |   主播的uid   |
      | platform |  是  |   string   | 平台，这里直接填pc |
 
-<details>
+   <details>
    <summary style="font-weight: bold">访问之后会返回如下结果</summary>
 
-```json
-{
-    "code": 0,
-    "message": "0",
-    "ttl": 1,
-    "data": {
-        "ruid": ???,
-        "rusername": "???",
-        "rface": "???",
-        "uface": "???",
-        "username": "???",
-        "accomany_day": 89,
-        "guards_info": [
-            {
-                "guard_type": 3,
-                "expired_time": 1695139199,
-                "guard_status": 1,
-                "renew_info": [
-                    {
-                        "guard_type": 3,
-                        "next_execute_time": 1695139199,
-                        "next_spend": 138000,
-                        "origin_price": 198000
-                    }
-                ]
-            }
-        ],
-        "latest_guard": 3,
-        "watch_time": 1027241,
-        "send_bar": 3378,
-        "up_medal": {
-            "target_id": ???,
-            "medal_name": "???",
-            "level": 24,
-            "medal_color_start": 1725515,
-            "medal_color_end": 5414290,
-            "medal_color_border": 6809855,
-            "is_lighted": 1,
-            "need_exp": 4440,
-            "all_exp": 7500,
-            "origin_level": 24,
-            "guard_level_1": {
-                "level": 28,
-                "medal_color_start": 398668,
-                "medal_color_end": 6850801,
-                "medal_color_border": 16771156,
-                "exp": 199980,
-                "exp_battery": 19998000,
-                "guard_icon": "https://i0.hdslb.com/bfs/live/1d16bf0fcc3b1b768d1179d60f1fdbabe6ab4489.png",
-                "honor_icon": ""
-            },
-            "guard_level_2": {
-                "level": 26,
-                "medal_color_start": 398668,
-                "medal_color_end": 6850801,
-                "medal_color_border": 16771156,
-                "exp": 19980,
-                "exp_battery": 1998000,
-                "guard_icon": "https://i0.hdslb.com/bfs/live/98a201c14a64e860a758f089144dcf3f42e7038c.png",
-                "honor_icon": ""
-            },
-            "guard_level_3": {
-                "level": 24,
-                "medal_color_start": 1725515,
-                "medal_color_end": 5414290,
-                "medal_color_border": 6809855,
-                "exp": 1380,
-                "exp_battery": 138000,
-                "guard_icon": "https://i0.hdslb.com/bfs/live/143f5ec3003b4080d1b5f817a9efdca46d631945.png",
-                "honor_icon": ""
-            },
-            "guard_extra_gold": 0,
-            "exp_limit": 250000,
-            "exp_today": 0,
-            "guard_icon": "https://i0.hdslb.com/bfs/live/143f5ec3003b4080d1b5f817a9efdca46d631945.png",
-            "honor_icon": ""
-        },
-        "privileges": {
-            "has_person": 0,
-            "out_pic": "",
-            "in_pic": "",
-            "test_id": 1,
-            "single_pic": ""
-        },
-        "is_live": 0,
-        "room_url": "???",
-        "is_ios_black": 0,
-        "is_active": 1,
-        "price_info": [
-            {
-                "guard_level": 1,
-                "price": 19998000,
-                "discount_price": 15998000,
-                "auto_renew_price": 0,
-                "num": 1,
-                "discount_type": 0,
-                "expired_timestamp": 1694951153,
-                "next_auto_renew_time": "",
-                "goods_id": 5,
-                "gift_id": 10001,
-                "gift_name": "总督",
-                "buy_back_remain": 0,
-                "expired_timestamp_origin": 1694951153,
-                "guard_expired": 0
-            },
-            {
-                "guard_level": 2,
-                "price": 1998000,
-                "discount_price": 1598000,
-                "auto_renew_price": 0,
-                "num": 1,
-                "discount_type": 0,
-                "expired_timestamp": 1694951153,
-                "next_auto_renew_time": "",
-                "goods_id": 6,
-                "gift_id": 10002,
-                "gift_name": "提督",
-                "buy_back_remain": 0,
-                "expired_timestamp_origin": 1694951153,
-                "guard_expired": 0
-            },
-            {
-                "guard_level": 3,
-                "price": 198000,
-                "discount_price": 158000,
-                "auto_renew_price": 138000,
-                "num": 1,
-                "discount_type": 2,
-                "expired_timestamp": 1695139199,
-                "next_auto_renew_time": "2023-09-19",
-                "goods_id": 7,
-                "gift_id": 10003,
-                "gift_name": "舰长",
-                "buy_back_remain": 0,
-                "expired_timestamp_origin": 1695139199,
-                "guard_expired": 1695139199
-            }
-        ],
-        "guard_num_3": 13,
-        "guard_num_2": 2,
-        "guard_num_1": 1,
-        "room_id": ???,
-        "effect_id": {
-            "1": 399,
-            "2": 398,
-            "3": 397
-        },
-        "pop_msg": "",
-        "room_info": {
-            "area_id": 744,
-            "parent_area_id": 9
-        },
-        "show_num": 10,
-        "entry_effect_tab": 3,
-        "benefits": [],
-        "now": 1694951153,
-        "first_guard_rate": null,
-        "first_guard_open": false,
-        "achieve_remind": {
-            "20": "",
-            "50": "",
-            "100": "",
-            "1000": "",
-            "10000": ""
-        },
-        "guard_total": 16,
-        "benefitv2": [],
-        "ab": {
-            "guard_price_multi": 1
-        },
-        "play_together": []
-    }
-}
-```
-</details>
+   ```json
+   {
+       "code": 0,
+       "message": "0",
+       "ttl": 1,
+       "data": {
+           "ruid": ???,
+           "rusername": "???",
+           "rface": "???",
+           "uface": "???",
+           "username": "???",
+           "accomany_day": 89,
+           "guards_info": [
+               {
+                   "guard_type": 3,
+                   "expired_time": 1695139199,
+                   "guard_status": 1,
+                   "renew_info": [
+                       {
+                           "guard_type": 3,
+                           "next_execute_time": 1695139199,
+                           "next_spend": 138000,
+                           "origin_price": 198000
+                       }
+                   ]
+               }
+           ],
+           "latest_guard": 3,
+           "watch_time": 1027241,
+           "send_bar": 3378,
+           "up_medal": {
+               "target_id": ???,
+               "medal_name": "???",
+               "level": 24,
+               "medal_color_start": 1725515,
+               "medal_color_end": 5414290,
+               "medal_color_border": 6809855,
+               "is_lighted": 1,
+               "need_exp": 4440,
+               "all_exp": 7500,
+               "origin_level": 24,
+               "guard_level_1": {
+                   "level": 28,
+                   "medal_color_start": 398668,
+                   "medal_color_end": 6850801,
+                   "medal_color_border": 16771156,
+                   "exp": 199980,
+                   "exp_battery": 19998000,
+                   "guard_icon": "https://i0.hdslb.com/bfs/live/1d16bf0fcc3b1b768d1179d60f1fdbabe6ab4489.png",
+                   "honor_icon": ""
+               },
+               "guard_level_2": {
+                   "level": 26,
+                   "medal_color_start": 398668,
+                   "medal_color_end": 6850801,
+                   "medal_color_border": 16771156,
+                   "exp": 19980,
+                   "exp_battery": 1998000,
+                   "guard_icon": "https://i0.hdslb.com/bfs/live/98a201c14a64e860a758f089144dcf3f42e7038c.png",
+                   "honor_icon": ""
+               },
+               "guard_level_3": {
+                   "level": 24,
+                   "medal_color_start": 1725515,
+                   "medal_color_end": 5414290,
+                   "medal_color_border": 6809855,
+                   "exp": 1380,
+                   "exp_battery": 138000,
+                   "guard_icon": "https://i0.hdslb.com/bfs/live/143f5ec3003b4080d1b5f817a9efdca46d631945.png",
+                   "honor_icon": ""
+               },
+               "guard_extra_gold": 0,
+               "exp_limit": 250000,
+               "exp_today": 0,
+               "guard_icon": "https://i0.hdslb.com/bfs/live/143f5ec3003b4080d1b5f817a9efdca46d631945.png",
+               "honor_icon": ""
+           },
+           "privileges": {
+               "has_person": 0,
+               "out_pic": "",
+               "in_pic": "",
+               "test_id": 1,
+               "single_pic": ""
+           },
+           "is_live": 0,
+           "room_url": "???",
+           "is_ios_black": 0,
+           "is_active": 1,
+           "price_info": [
+               {
+                   "guard_level": 1,
+                   "price": 19998000,
+                   "discount_price": 15998000,
+                   "auto_renew_price": 0,
+                   "num": 1,
+                   "discount_type": 0,
+                   "expired_timestamp": 1694951153,
+                   "next_auto_renew_time": "",
+                   "goods_id": 5,
+                   "gift_id": 10001,
+                   "gift_name": "总督",
+                   "buy_back_remain": 0,
+                   "expired_timestamp_origin": 1694951153,
+                   "guard_expired": 0
+               },
+               {
+                   "guard_level": 2,
+                   "price": 1998000,
+                   "discount_price": 1598000,
+                   "auto_renew_price": 0,
+                   "num": 1,
+                   "discount_type": 0,
+                   "expired_timestamp": 1694951153,
+                   "next_auto_renew_time": "",
+                   "goods_id": 6,
+                   "gift_id": 10002,
+                   "gift_name": "提督",
+                   "buy_back_remain": 0,
+                   "expired_timestamp_origin": 1694951153,
+                   "guard_expired": 0
+               },
+               {
+                   "guard_level": 3,
+                   "price": 198000,
+                   "discount_price": 158000,
+                   "auto_renew_price": 138000,
+                   "num": 1,
+                   "discount_type": 2,
+                   "expired_timestamp": 1695139199,
+                   "next_auto_renew_time": "2023-09-19",
+                   "goods_id": 7,
+                   "gift_id": 10003,
+                   "gift_name": "舰长",
+                   "buy_back_remain": 0,
+                   "expired_timestamp_origin": 1695139199,
+                   "guard_expired": 1695139199
+               }
+           ],
+           "guard_num_3": 13,
+           "guard_num_2": 2,
+           "guard_num_1": 1,
+           "room_id": ???,
+           "effect_id": {
+               "1": 399,
+               "2": 398,
+               "3": 397
+           },
+           "pop_msg": "",
+           "room_info": {
+               "area_id": 744,
+               "parent_area_id": 9
+           },
+           "show_num": 10,
+           "entry_effect_tab": 3,
+           "benefits": [],
+           "now": 1694951153,
+           "first_guard_rate": null,
+           "first_guard_open": false,
+           "achieve_remind": {
+               "20": "",
+               "50": "",
+               "100": "",
+               "1000": "",
+               "10000": ""
+           },
+           "guard_total": 16,
+           "benefitv2": [],
+           "ab": {
+               "guard_price_multi": 1
+           },
+           "play_together": []
+       }
+   }
+   ```
+   </details>
 
 由于大部分的Json对象在1中有介绍，故此处仅介绍一些重要的：
 
-   |         对象        |   类型   |          说明           |
-   |:------|:---------------------:|:------|
-   | watch_time         | int | 在该直播间累计观看时间的时间戳，单位为秒  |
-   | send_bar          |  int   |     在该直播间累计发送的弹幕     |
-   | guard_extra_gold         | int | 开通大航海之前在该直播间所消费的电池总数 |
-
-正常情况下，只有大航海的用户能够查看上述信息（第三条除外），实际上普通用户也能通过API来访问获取这些信息。
+   |         对象        |   类型   |          说明          |
+   |:------:|:--------------------:|:------|
+   | watch_time         |  int   | 在该直播间累计观看时间的时间戳，单位为秒 |
+   | send_bar          |  int   |    在该直播间累计发送的弹幕数量    |
+   | guard_extra_gold         |  int   | 开通大航海之前在该直播间所消费的电池总数 |
