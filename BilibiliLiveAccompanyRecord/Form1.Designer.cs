@@ -48,7 +48,23 @@
             this.QueryButton = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.UsernameLabel = new System.Windows.Forms.Label();
-            this.StatisticsLabel = new System.Windows.Forms.Label();
+            this.MedalCountLabel = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.LightedCountLabel = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.BlackoutCountLabel = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.TotalExpenseLabel = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.TotalSendBarLabel = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.TotalWatchTimeLabel = new System.Windows.Forms.Label();
+            this.ExportButton = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.TotalWatchDayTimeLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,18 +72,18 @@
             // 
             this.CookieInputBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.CookieInputBox.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.CookieInputBox.Location = new System.Drawing.Point(130, 75);
+            this.CookieInputBox.Location = new System.Drawing.Point(145, 74);
             this.CookieInputBox.Multiline = true;
             this.CookieInputBox.Name = "CookieInputBox";
             this.CookieInputBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.CookieInputBox.Size = new System.Drawing.Size(831, 80);
+            this.CookieInputBox.Size = new System.Drawing.Size(816, 80);
             this.CookieInputBox.TabIndex = 5;
             // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label1.Location = new System.Drawing.Point(22, 75);
+            this.label1.Location = new System.Drawing.Point(22, 74);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(102, 32);
             this.label1.TabIndex = 4;
@@ -103,14 +119,14 @@
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.WindowText;
-            this.dataGridView1.Location = new System.Drawing.Point(22, 232);
+            this.dataGridView1.Location = new System.Drawing.Point(22, 381);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridView1.RowTemplate.Height = 27;
-            this.dataGridView1.Size = new System.Drawing.Size(939, 550);
+            this.dataGridView1.Size = new System.Drawing.Size(939, 450);
             this.dataGridView1.TabIndex = 10;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView1.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_ColumnHeaderMouseClick);
@@ -130,7 +146,7 @@
             this.name.HeaderText = "主播昵称";
             this.name.Name = "name";
             this.name.ReadOnly = true;
-            this.name.Width = 120;
+            this.name.Width = 150;
             // 
             // medal_name
             // 
@@ -170,7 +186,7 @@
             this.today_intimacy.ReadOnly = true;
             this.today_intimacy.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.today_intimacy.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.today_intimacy.Width = 150;
+            this.today_intimacy.Width = 130;
             // 
             // receive_time
             // 
@@ -230,10 +246,10 @@
             // UidInputBox
             // 
             this.UidInputBox.Font = new System.Drawing.Font("微软雅黑", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.UidInputBox.Location = new System.Drawing.Point(130, 21);
+            this.UidInputBox.Location = new System.Drawing.Point(145, 21);
             this.UidInputBox.Multiline = true;
             this.UidInputBox.Name = "UidInputBox";
-            this.UidInputBox.Size = new System.Drawing.Size(261, 32);
+            this.UidInputBox.Size = new System.Drawing.Size(246, 32);
             this.UidInputBox.TabIndex = 14;
             // 
             // QueryButton
@@ -241,7 +257,7 @@
             this.QueryButton.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.QueryButton.Location = new System.Drawing.Point(406, 21);
             this.QueryButton.Name = "QueryButton";
-            this.QueryButton.Size = new System.Drawing.Size(188, 32);
+            this.QueryButton.Size = new System.Drawing.Size(170, 32);
             this.QueryButton.TabIndex = 15;
             this.QueryButton.Text = "点击查询";
             this.QueryButton.UseVisualStyleBackColor = true;
@@ -250,7 +266,7 @@
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(609, 21);
+            this.label4.Location = new System.Drawing.Point(591, 21);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(87, 32);
             this.label4.TabIndex = 16;
@@ -260,31 +276,230 @@
             // UsernameLabel
             // 
             this.UsernameLabel.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
-            this.UsernameLabel.Location = new System.Drawing.Point(702, 21);
+            this.UsernameLabel.Location = new System.Drawing.Point(684, 21);
             this.UsernameLabel.Name = "UsernameLabel";
             this.UsernameLabel.Size = new System.Drawing.Size(259, 32);
             this.UsernameLabel.TabIndex = 17;
             this.UsernameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // StatisticsLabel
+            // MedalCountLabel
             // 
-            this.StatisticsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
-            this.StatisticsLabel.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.StatisticsLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.StatisticsLabel.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
-            this.StatisticsLabel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.StatisticsLabel.Location = new System.Drawing.Point(22, 178);
-            this.StatisticsLabel.Name = "StatisticsLabel";
-            this.StatisticsLabel.Size = new System.Drawing.Size(939, 32);
-            this.StatisticsLabel.TabIndex = 18;
-            this.StatisticsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.MedalCountLabel.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.MedalCountLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.MedalCountLabel.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.MedalCountLabel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.MedalCountLabel.Location = new System.Drawing.Point(172, 226);
+            this.MedalCountLabel.Name = "MedalCountLabel";
+            this.MedalCountLabel.Size = new System.Drawing.Size(90, 32);
+            this.MedalCountLabel.TabIndex = 18;
+            this.MedalCountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label2.Location = new System.Drawing.Point(22, 226);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(144, 32);
+            this.label2.TabIndex = 19;
+            this.label2.Text = "总勋章数：";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label5
+            // 
+            this.label5.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.label5.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label5.Location = new System.Drawing.Point(272, 226);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(146, 32);
+            this.label5.TabIndex = 21;
+            this.label5.Text = "点亮勋章数：";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // LightedCountLabel
+            // 
+            this.LightedCountLabel.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.LightedCountLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.LightedCountLabel.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.LightedCountLabel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.LightedCountLabel.Location = new System.Drawing.Point(422, 226);
+            this.LightedCountLabel.Name = "LightedCountLabel";
+            this.LightedCountLabel.Size = new System.Drawing.Size(90, 32);
+            this.LightedCountLabel.TabIndex = 20;
+            this.LightedCountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label7
+            // 
+            this.label7.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.label7.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label7.Location = new System.Drawing.Point(525, 226);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(144, 32);
+            this.label7.TabIndex = 23;
+            this.label7.Text = "熄灭勋章数：";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // BlackoutCountLabel
+            // 
+            this.BlackoutCountLabel.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.BlackoutCountLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.BlackoutCountLabel.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.BlackoutCountLabel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.BlackoutCountLabel.Location = new System.Drawing.Point(675, 226);
+            this.BlackoutCountLabel.Name = "BlackoutCountLabel";
+            this.BlackoutCountLabel.Size = new System.Drawing.Size(90, 32);
+            this.BlackoutCountLabel.TabIndex = 22;
+            this.BlackoutCountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label13
+            // 
+            this.label13.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.label13.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label13.Location = new System.Drawing.Point(22, 278);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(144, 32);
+            this.label13.TabIndex = 25;
+            this.label13.Text = "总计消费电池：";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // TotalExpenseLabel
+            // 
+            this.TotalExpenseLabel.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.TotalExpenseLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TotalExpenseLabel.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.TotalExpenseLabel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.TotalExpenseLabel.Location = new System.Drawing.Point(172, 278);
+            this.TotalExpenseLabel.Name = "TotalExpenseLabel";
+            this.TotalExpenseLabel.Size = new System.Drawing.Size(90, 32);
+            this.TotalExpenseLabel.TabIndex = 24;
+            this.TotalExpenseLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label9
+            // 
+            this.label9.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.label9.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label9.Location = new System.Drawing.Point(272, 278);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(144, 32);
+            this.label9.TabIndex = 27;
+            this.label9.Text = "总计发送弹幕：";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // TotalSendBarLabel
+            // 
+            this.TotalSendBarLabel.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.TotalSendBarLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TotalSendBarLabel.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.TotalSendBarLabel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.TotalSendBarLabel.Location = new System.Drawing.Point(422, 278);
+            this.TotalSendBarLabel.Name = "TotalSendBarLabel";
+            this.TotalSendBarLabel.Size = new System.Drawing.Size(90, 32);
+            this.TotalSendBarLabel.TabIndex = 26;
+            this.TotalSendBarLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label11
+            // 
+            this.label11.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.label11.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label11.Location = new System.Drawing.Point(22, 329);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(144, 32);
+            this.label11.TabIndex = 29;
+            this.label11.Text = "总计观看时间：";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // TotalWatchTimeLabel
+            // 
+            this.TotalWatchTimeLabel.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.TotalWatchTimeLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TotalWatchTimeLabel.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.TotalWatchTimeLabel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.TotalWatchTimeLabel.Location = new System.Drawing.Point(172, 329);
+            this.TotalWatchTimeLabel.Name = "TotalWatchTimeLabel";
+            this.TotalWatchTimeLabel.Size = new System.Drawing.Size(250, 32);
+            this.TotalWatchTimeLabel.TabIndex = 28;
+            this.TotalWatchTimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // ExportButton
+            // 
+            this.ExportButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ExportButton.Enabled = false;
+            this.ExportButton.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ExportButton.Location = new System.Drawing.Point(791, 174);
+            this.ExportButton.Name = "ExportButton";
+            this.ExportButton.Size = new System.Drawing.Size(170, 32);
+            this.ExportButton.TabIndex = 30;
+            this.ExportButton.Text = "导出数据";
+            this.ExportButton.UseVisualStyleBackColor = true;
+            this.ExportButton.Click += new System.EventHandler(this.ExportButton_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox1.Font = new System.Drawing.Font("微软雅黑", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox1.Location = new System.Drawing.Point(145, 174);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(620, 32);
+            this.textBox1.TabIndex = 32;
+            // 
+            // label6
+            // 
+            this.label6.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.label6.Location = new System.Drawing.Point(22, 174);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(117, 32);
+            this.label6.TabIndex = 31;
+            this.label6.Text = "导出路径：";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label8
+            // 
+            this.label8.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.label8.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label8.Location = new System.Drawing.Point(432, 329);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(144, 32);
+            this.label8.TabIndex = 33;
+            this.label8.Text = "大约折合天数：";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // TotalWatchDayTimeLabel
+            // 
+            this.TotalWatchDayTimeLabel.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.TotalWatchDayTimeLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TotalWatchDayTimeLabel.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.TotalWatchDayTimeLabel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.TotalWatchDayTimeLabel.Location = new System.Drawing.Point(591, 329);
+            this.TotalWatchDayTimeLabel.Name = "TotalWatchDayTimeLabel";
+            this.TotalWatchDayTimeLabel.Size = new System.Drawing.Size(174, 32);
+            this.TotalWatchDayTimeLabel.TabIndex = 34;
+            this.TotalWatchDayTimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(982, 803);
-            this.Controls.Add(this.StatisticsLabel);
+            this.ClientSize = new System.Drawing.Size(982, 853);
+            this.Controls.Add(this.TotalWatchDayTimeLabel);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.ExportButton);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.TotalWatchTimeLabel);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.TotalSendBarLabel);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.TotalExpenseLabel);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.BlackoutCountLabel);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.LightedCountLabel);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.MedalCountLabel);
             this.Controls.Add(this.UsernameLabel);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.QueryButton);
@@ -301,6 +516,30 @@
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label TotalWatchDayTimeLabel;
+
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label6;
+
+        private System.Windows.Forms.Button ExportButton;
+
+        private System.Windows.Forms.Label MedalCountLabel;
+
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label BlackoutCountLabel;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label TotalSendBarLabel;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label TotalWatchTimeLabel;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label TotalExpenseLabel;
+
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label LightedCountLabel;
+
+        private System.Windows.Forms.Label label2;
 
         private System.Windows.Forms.Label StatisticsLabel;
 
