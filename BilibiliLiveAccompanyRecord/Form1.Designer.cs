@@ -61,10 +61,15 @@
             this.label11 = new System.Windows.Forms.Label();
             this.TotalWatchTimeLabel = new System.Windows.Forms.Label();
             this.ExportButton = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.ExportPathBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.TotalWatchDayTimeLabel = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.FullIntimacyLabel = new System.Windows.Forms.Label();
+            this.BrowseButton = new System.Windows.Forms.Button();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,7 +81,7 @@
             this.CookieInputBox.Multiline = true;
             this.CookieInputBox.Name = "CookieInputBox";
             this.CookieInputBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.CookieInputBox.Size = new System.Drawing.Size(816, 80);
+            this.CookieInputBox.Size = new System.Drawing.Size(866, 80);
             this.CookieInputBox.TabIndex = 5;
             // 
             // label1
@@ -126,7 +131,7 @@
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridView1.RowTemplate.Height = 27;
-            this.dataGridView1.Size = new System.Drawing.Size(939, 450);
+            this.dataGridView1.Size = new System.Drawing.Size(989, 450);
             this.dataGridView1.TabIndex = 10;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView1.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_ColumnHeaderMouseClick);
@@ -257,7 +262,7 @@
             this.QueryButton.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.QueryButton.Location = new System.Drawing.Point(406, 21);
             this.QueryButton.Name = "QueryButton";
-            this.QueryButton.Size = new System.Drawing.Size(170, 32);
+            this.QueryButton.Size = new System.Drawing.Size(100, 32);
             this.QueryButton.TabIndex = 15;
             this.QueryButton.Text = "点击查询";
             this.QueryButton.UseVisualStyleBackColor = true;
@@ -266,7 +271,7 @@
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(591, 21);
+            this.label4.Location = new System.Drawing.Point(718, 21);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(87, 32);
             this.label4.TabIndex = 16;
@@ -275,10 +280,12 @@
             // 
             // UsernameLabel
             // 
+            this.UsernameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.UsernameLabel.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
-            this.UsernameLabel.Location = new System.Drawing.Point(684, 21);
+            this.UsernameLabel.ForeColor = System.Drawing.Color.Red;
+            this.UsernameLabel.Location = new System.Drawing.Point(811, 21);
             this.UsernameLabel.Name = "UsernameLabel";
-            this.UsernameLabel.Size = new System.Drawing.Size(259, 32);
+            this.UsernameLabel.Size = new System.Drawing.Size(200, 32);
             this.UsernameLabel.TabIndex = 17;
             this.UsernameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -355,7 +362,7 @@
             // 
             this.label13.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
             this.label13.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label13.Location = new System.Drawing.Point(22, 278);
+            this.label13.Location = new System.Drawing.Point(272, 278);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(144, 32);
             this.label13.TabIndex = 25;
@@ -368,7 +375,7 @@
             this.TotalExpenseLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TotalExpenseLabel.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
             this.TotalExpenseLabel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.TotalExpenseLabel.Location = new System.Drawing.Point(172, 278);
+            this.TotalExpenseLabel.Location = new System.Drawing.Point(422, 278);
             this.TotalExpenseLabel.Name = "TotalExpenseLabel";
             this.TotalExpenseLabel.Size = new System.Drawing.Size(90, 32);
             this.TotalExpenseLabel.TabIndex = 24;
@@ -378,7 +385,7 @@
             // 
             this.label9.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
             this.label9.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label9.Location = new System.Drawing.Point(272, 278);
+            this.label9.Location = new System.Drawing.Point(525, 278);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(144, 32);
             this.label9.TabIndex = 27;
@@ -391,7 +398,7 @@
             this.TotalSendBarLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TotalSendBarLabel.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
             this.TotalSendBarLabel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.TotalSendBarLabel.Location = new System.Drawing.Point(422, 278);
+            this.TotalSendBarLabel.Location = new System.Drawing.Point(675, 278);
             this.TotalSendBarLabel.Name = "TotalSendBarLabel";
             this.TotalSendBarLabel.Size = new System.Drawing.Size(90, 32);
             this.TotalSendBarLabel.TabIndex = 26;
@@ -425,25 +432,25 @@
             this.ExportButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ExportButton.Enabled = false;
             this.ExportButton.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ExportButton.Location = new System.Drawing.Point(791, 174);
+            this.ExportButton.Location = new System.Drawing.Point(762, 174);
             this.ExportButton.Name = "ExportButton";
-            this.ExportButton.Size = new System.Drawing.Size(170, 32);
+            this.ExportButton.Size = new System.Drawing.Size(100, 32);
             this.ExportButton.TabIndex = 30;
             this.ExportButton.Text = "导出数据";
             this.ExportButton.UseVisualStyleBackColor = true;
             this.ExportButton.Click += new System.EventHandler(this.ExportButton_Click);
             // 
-            // textBox1
+            // ExportPathBox
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.textBox1.Font = new System.Drawing.Font("微软雅黑", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox1.Location = new System.Drawing.Point(145, 174);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(620, 32);
-            this.textBox1.TabIndex = 32;
+            this.ExportPathBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+            this.ExportPathBox.BackColor = System.Drawing.SystemColors.Window;
+            this.ExportPathBox.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.ExportPathBox.Location = new System.Drawing.Point(145, 174);
+            this.ExportPathBox.Multiline = true;
+            this.ExportPathBox.Name = "ExportPathBox";
+            this.ExportPathBox.ReadOnly = true;
+            this.ExportPathBox.Size = new System.Drawing.Size(481, 32);
+            this.ExportPathBox.TabIndex = 32;
             // 
             // label6
             // 
@@ -478,14 +485,77 @@
             this.TotalWatchDayTimeLabel.TabIndex = 34;
             this.TotalWatchDayTimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // checkBox1
+            // 
+            this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkBox1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.checkBox1.Location = new System.Drawing.Point(880, 177);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(135, 27);
+            this.checkBox1.TabIndex = 35;
+            this.checkBox1.Text = "导出带序号";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // label10
+            // 
+            this.label10.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.label10.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label10.Location = new System.Drawing.Point(22, 278);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(144, 32);
+            this.label10.TabIndex = 37;
+            this.label10.Text = "今日满亲密度：";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // FullIntimacyLabel
+            // 
+            this.FullIntimacyLabel.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.FullIntimacyLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.FullIntimacyLabel.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.FullIntimacyLabel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.FullIntimacyLabel.Location = new System.Drawing.Point(172, 278);
+            this.FullIntimacyLabel.Name = "FullIntimacyLabel";
+            this.FullIntimacyLabel.Size = new System.Drawing.Size(90, 32);
+            this.FullIntimacyLabel.TabIndex = 36;
+            this.FullIntimacyLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // BrowseButton
+            // 
+            this.BrowseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BrowseButton.Enabled = false;
+            this.BrowseButton.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.BrowseButton.Location = new System.Drawing.Point(645, 174);
+            this.BrowseButton.Name = "BrowseButton";
+            this.BrowseButton.Size = new System.Drawing.Size(100, 32);
+            this.BrowseButton.TabIndex = 38;
+            this.BrowseButton.Text = "浏览…";
+            this.BrowseButton.UseVisualStyleBackColor = true;
+            this.BrowseButton.Click += new System.EventHandler(this.BrowseButton_Click);
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.checkBox2.Location = new System.Drawing.Point(525, 25);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(187, 27);
+            this.checkBox2.TabIndex = 39;
+            this.checkBox2.Text = "仅查询粉丝勋章墙";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(982, 853);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(1032, 853);
+            this.Controls.Add(this.checkBox2);
+            this.Controls.Add(this.BrowseButton);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.FullIntimacyLabel);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.TotalWatchDayTimeLabel);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.ExportPathBox);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.ExportButton);
             this.Controls.Add(this.label11);
@@ -509,18 +579,28 @@
             this.Controls.Add(this.CookieInputBox);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Location = new System.Drawing.Point(15, 15);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "B站直播陪伴记录查询工具";
+            this.Text = "B站直播间陪伴记录查询工具";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
 
+        private System.Windows.Forms.CheckBox checkBox2;
+
+        private System.Windows.Forms.Button BrowseButton;
+
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label FullIntimacyLabel;
+
+        private System.Windows.Forms.CheckBox checkBox1;
+
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label TotalWatchDayTimeLabel;
 
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox ExportPathBox;
         private System.Windows.Forms.Label label6;
 
         private System.Windows.Forms.Button ExportButton;

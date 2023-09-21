@@ -5,7 +5,9 @@ using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Windows.Forms;
+using System.Windows.Forms.Layout;
 using Newtonsoft.Json.Linq;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
@@ -21,81 +23,95 @@ namespace BilibiliLiveAccompanyRecord {
 
         private void QueryButton_Click(object sender, EventArgs e) {
             Regex reg = new Regex("^[0-9]+$");
-            int lightedCount = 0, totalExpense = 0, totalSendBar = 0, totalWatchTime = 0;
+            int lightedCount = 0, fullIntimacy = 0, totalExpense = 0, totalSendBar = 0, totalWatchTime = 0;
             if (reg.Match(UidInputBox.Text).Success && CookieInputBox.Text.Length > 0) {
                 dataGridView1.Rows.Clear();
                 QueryButton.Enabled = false;
                 GetMedalWall();
                 QueryButton.Enabled = true;
-                ExportButton.Enabled = true;
-                for (int i = 0; i < dataGridView1.RowCount; i++) {
-                    lightedCount += dataGridView1[9, i].Value.ToString().Equals("点亮") ? 1 : 0;
-                    totalExpense += int.Parse(dataGridView1[10, i].Value.ToString());
-                    totalSendBar += int.Parse(dataGridView1[11, i].Value.ToString());
-                    totalWatchTime += FormatTimeToTimeStamp(dataGridView1[12, i].Value.ToString());
-                }
+                BrowseButton.Enabled = true;
+                if (CookieInputBox.Text.Contains("DedeUserID=" + UidInputBox.Text) && !checkBox2.Checked) {
+                    for (int i = 0; i < dataGridView1.RowCount; i++) {
+                        List<string> intimacyList = new List<string>(
+                            dataGridView1[6, i].Value.ToString().Split('/'));
+                        lightedCount += dataGridView1[9, i].Value.ToString().Equals("点亮") ? 1 : 0;
+                        fullIntimacy += intimacyList[0].Equals(intimacyList[1]) ? 1 : 0;
+                        totalExpense += int.Parse(dataGridView1[10, i].Value.ToString());
+                        totalSendBar += int.Parse(dataGridView1[11, i].Value.ToString());
+                        totalWatchTime += FormatTimeToTimeStamp(dataGridView1[12, i].Value.ToString());
+                    }
 
-                int medalCount = dataGridView1.RowCount;
-                MedalCountLabel.Text = medalCount.ToString();
-                LightedCountLabel.Text = lightedCount.ToString();
-                BlackoutCountLabel.Text = (medalCount - lightedCount).ToString();
-                TotalExpenseLabel.Text = totalExpense.ToString();
-                TotalSendBarLabel.Text = totalSendBar.ToString();
-                TotalWatchTimeLabel.Text = TimeStampToFormatTime(totalWatchTime);
-                TotalWatchDayTimeLabel.Text = (int)Math.Ceiling((float)totalWatchTime / 3600 / 24) + @"天";
+                    int medalCount = dataGridView1.RowCount;
+                    MedalCountLabel.Text = medalCount.ToString();
+                    LightedCountLabel.Text = lightedCount.ToString();
+                    BlackoutCountLabel.Text = (medalCount - lightedCount).ToString();
+                    FullIntimacyLabel.Text = fullIntimacy.ToString();
+                    TotalExpenseLabel.Text = totalExpense.ToString();
+                    TotalSendBarLabel.Text = totalSendBar.ToString();
+                    TotalWatchTimeLabel.Text = TimeStampToFormatTime(totalWatchTime);
+                    TotalWatchDayTimeLabel.Text = (int)Math.Ceiling((float)totalWatchTime / 3600 / 24) + @"天";
+                } else {
+                    foreach (Control control in (ArrangedElementCollection)Controls) {
+                        if (control.GetType() == typeof(Label) && control.BackColor == SystemColors.HighlightText) {
+                            control.Text = "";
+                        } 
+                    }
+                }
             }
         }
         
-        //将DataGridView中的数据导出为Excel表格
-        private void ExportButton_Click(object sender, EventArgs e) {
+        private void BrowseButton_Click(object sender, EventArgs e) {
             FileDialog dialog = new SaveFileDialog();
             dialog.Filter = @"XLSX 工作表(*.xlsx)|*.xlsx";
             dialog.Title = @"选择保存文件";
             dialog.DefaultExt = "xlsx";
             dialog.AddExtension = true;
             dialog.RestoreDirectory = true;
-            dialog.FileName = DateTime.Now.ToString("陪伴记录数据_" + UidInputBox.Text + "_yyyy-MM-dd_hh.mm.ss");
+            dialog.FileName = DateTime.Now.ToString(
+                "陪伴记录数据_" + UidInputBox.Text + "_yyyy-MM-dd_hh.mm.ss");
             if (dialog.ShowDialog() == DialogResult.OK) {
-                textBox1.Text = dialog.FileName;
-                FileInfo newFile = new FileInfo(dialog.FileName);
-                if (newFile.Exists) {
-                    newFile.Delete();
-                    newFile = new FileInfo(dialog.FileName);
+                string directory = Path.GetDirectoryName(dialog.FileName);
+                ExportButton.Enabled = Directory.Exists(directory);
+                ExportPathBox.Text = dialog.FileName;
+            }
+        }
+        
+        //将DataGridView中的数据导出为Excel表格
+        private void ExportButton_Click(object sender, EventArgs e) {
+            int offset = checkBox1.Checked ? 0 : 1;
+            FileInfo newFile = new FileInfo(ExportPathBox.Text);
+            using (ExcelPackage package = new ExcelPackage(newFile)) {
+                ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("数据");
+                worksheet.Column(3 - offset).Style.Fill.PatternType = ExcelFillStyle.Solid;
+                worksheet.Column(3 - offset).Style.Font.Color.SetColor(Color.White);
+                //列标题，将Excel表格中的列宽、对齐方式和字体设置成与DataGridView中的一致
+                for (int i = 0; i < dataGridView1.ColumnCount - offset; i++) {
+                    worksheet.Cells[1, i + 1].Value = dataGridView1.Columns[i + offset].HeaderText;
+                    worksheet.Cells[1, i + 1].Style.Border.BorderAround(ExcelBorderStyle.Thin, Color.Black);
+                    worksheet.Column(i + 1).Width = dataGridView1.Columns[i + offset].Width / 8.0F;
+                    worksheet.Column(i + 1).Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                    worksheet.Column(i + 1).Style.Font.SetFromFont(dataGridView1.DefaultCellStyle.Font);
                 }
-
-                using (ExcelPackage package = new ExcelPackage(newFile)) {
-                    ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("数据");
-                    worksheet.Column(3).Style.Fill.PatternType = ExcelFillStyle.Solid;
-                    worksheet.Column(3).Style.Font.Color.SetColor(Color.White);
-                    //列标题，将Excel表格中的列宽、对齐方式和字体设置成与DataGridView一致
-                    for (int i = 0; i < dataGridView1.ColumnCount; i++) {
-                        worksheet.Cells[1, i + 1].Value = dataGridView1.Columns[i].HeaderText;
-                        worksheet.Cells[1, i + 1].Style.Border.BorderAround(ExcelBorderStyle.Thin, Color.Black);
-                        worksheet.Column(i + 1).Width = dataGridView1.Columns[i].Width / 8.0F;
-                        worksheet.Column(i + 1).Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                        worksheet.Column(i + 1).Style.Font.SetFromFont(dataGridView1.DefaultCellStyle.Font);
+                //将DataGridView中的数据写入到Excel表格中（行列下标的初始值是1而不是0）
+                for (int i = 0; i < dataGridView1.RowCount; i++) {
+                    for (int j = 0; j < dataGridView1.ColumnCount - offset; j++) {
+                        worksheet.Cells[i + 2, j + 1].Value = dataGridView1[j + offset, i].Value;
+                        worksheet.Cells[i + 2, 3 - offset].Style.Fill.PatternType = ExcelFillStyle.Solid;
+                        worksheet.Cells[i + 2, 3 - offset].Style.Fill.BackgroundColor.SetColor(dataGridView1[2, i].Style.BackColor);
+                        worksheet.Cells[i + 2, j + 1].Style.Border.BorderAround(ExcelBorderStyle.Thin, Color.Black);
                     }
-                    //将DataGridView中的数据写入到Excel表格中（行列下标的初始值是1而不是0）
-                    for (int i = 0; i < dataGridView1.RowCount; i++) {
-                        for (int j = 0; j < dataGridView1.ColumnCount; j++) {
-                            worksheet.Cells[i + 2, j + 1].Value = dataGridView1[j, i].Value;
-                            worksheet.Cells[i + 2, 3].Style.Fill.PatternType = ExcelFillStyle.Solid;
-                            worksheet.Cells[i + 2, 3].Style.Fill.BackgroundColor.SetColor(dataGridView1[2, i].Style.BackColor);
-                            worksheet.Cells[i + 2, j + 1].Style.Border.BorderAround(ExcelBorderStyle.Thin, Color.Black);
-                        }
-                    }
-                    //由于首行为各列标题，故将首行字体设置为黑色加粗
-                    worksheet.Row(1).Style.Font.Bold = true;
-                    worksheet.Row(1).Style.Font.Color.SetColor(Color.Black);
-                    worksheet.View.FreezePanes(2, 1); //冻结首行
-                    package.Save();
                 }
-
-                DialogResult dialogResult = MessageBox.Show(@"导出成功！是否打开该文件？", 
-                    @"提示", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                if (dialogResult == DialogResult.Yes) {
-                    Process.Start(dialog.FileName);
-                }
+                //由于首行为各列标题，故将首行字体设置为黑色加粗
+                worksheet.Row(1).Style.Font.Bold = true;
+                worksheet.Row(1).Style.Font.Color.SetColor(Color.Black);
+                worksheet.View.FreezePanes(2, 1); //冻结首行
+                package.Save();
+            }
+            //导出成功之后会出现提示
+            DialogResult dialogResult = MessageBox.Show(@"导出成功！是否打开文件？", 
+                @"提示", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (dialogResult == DialogResult.Yes) {
+                Process.Start(ExportPathBox.Text);
             }
         }
 
@@ -137,6 +153,12 @@ namespace BilibiliLiveAccompanyRecord {
                 //根据所输入的UID来获取对应用户粉丝勋章墙的相关信息；
                 //如果该用户并未公开其粉丝勋章墙，则会获取失败；
                 //非本浏览器所登录的账号最多只能获取到前200个粉丝勋章的信息。
+                string closeSpaceMedal = jObject["data"]["close_space_medal"]?.ToString();
+                string onlyShowWearing = jObject["data"]["only_show_wearing"]?.ToString();
+                if (onlyShowWearing != null && closeSpaceMedal != null && (closeSpaceMedal.Equals("1") || onlyShowWearing.Equals("1"))) {
+                    MessageBox.Show(@"该用户并未公开粉丝勋章墙，获取失败！", @"错误", MessageBoxButtons.OK, MessageBoxIcon.Error); return;
+                }
+                
                 for (int i = 0; i < medalList.Count; i++) {
                     JObject tempObject = JObject.Parse(medalList[i].ToString());
                     dataGridView1[1, i].Value = tempObject["target_name"]?.ToString();
@@ -150,17 +172,22 @@ namespace BilibiliLiveAccompanyRecord {
                     string dayLimit = tempObject["medal_info"]?["day_limit"]?.ToString();
                     dataGridView1[6, i].Value = todayFeed + "/" + dayLimit;
                     dataGridView1[0, i].Value = i + 1;
+                    if (!CookieInputBox.Text.Contains("DedeUserID=" + UidInputBox.Text) || checkBox2.Checked) {
+                        int medalColor = int.Parse(tempObject["medal_info"]["medal_color_start"].ToString());
+                        dataGridView1[2, i].Style.BackColor = DecimalToColor(medalColor);
+                    }
                 }
 
                 //只有当前所登录账号才能获取到大航海信息以及个人中心中的粉丝勋章的相关信息；
                 //由于获取过程相对耗时，当输入的UID与Cookie中的UID不匹配时，则会停止获取，以节省时间。
                 //而且后面的信息也只有登录与UID相符的账号才能查询（也就是本人才能查询）。
-                if (CookieInputBox.Text.Contains("DedeUserID=" + UidInputBox.Text)) {
+                if (CookieInputBox.Text.Contains("DedeUserID=" + UidInputBox.Text) && !checkBox2.Checked) {
                     for (int i = 0; i < medalList.Count; i++) {
                         JObject tempObject = JObject.Parse(medalList[i].ToString());
                         int currentIntimacy = int.Parse(tempObject["medal_info"]["intimacy"].ToString());
                         string uid = tempObject["medal_info"]?["target_id"]?.ToString();
                         GetGuardActive(uid, i, currentIntimacy);
+                        Thread.Sleep(i % 100 == 0 ? 1000 : 100);
                     }
 
                     if (GetHomeMedalTotalPage() > 0) {
@@ -179,9 +206,7 @@ namespace BilibiliLiveAccompanyRecord {
                             int medalColor = int.Parse(tempObject["medal_color_start"].ToString());
                             for (int j = 0; j < medalList.Count; j++) {
                                 if (int.Parse(dataGridView1[4, j].Value.ToString()) == medalId) {
-                                    dataGridView1[2, j].Style.BackColor = 
-                                        Color.FromArgb((medalColor >> 16) & 255, 
-                                        (medalColor >> 8) & 255, medalColor & 255);
+                                    dataGridView1[2, j].Style.BackColor = DecimalToColor(medalColor);
                                     dataGridView1[7, j].Value = receiveTime;
                                     dataGridView1[8, j].Value = totalScore;
                                     dataGridView1[9, j].Value = isLighted ? "点亮" : "熄灭";
@@ -246,7 +271,7 @@ namespace BilibiliLiveAccompanyRecord {
             return totalGuardIntimacy + currentIntimacy;
         }
 
-        //从获取链接中的Json文本内容，并对其进行序列化处理
+        //从获取链接中的Json文本内容
         private static JObject GetJsonFromUrl(string url, string cookie) {
             HttpWebRequest req = (HttpWebRequest) WebRequest.Create(url);
             req.Method = "GET";
@@ -257,6 +282,10 @@ namespace BilibiliLiveAccompanyRecord {
             Stream stream = resp.GetResponseStream();
             StreamReader reader = new StreamReader(stream, false);
             return JObject.Parse(reader.ReadToEnd());
+        }
+
+        private static Color DecimalToColor(int color) {
+            return Color.FromArgb((color >> 16) & 255, (color >> 8) & 255, color & 255);
         }
 
         //将时间戳转换成标准的时分秒的形式
