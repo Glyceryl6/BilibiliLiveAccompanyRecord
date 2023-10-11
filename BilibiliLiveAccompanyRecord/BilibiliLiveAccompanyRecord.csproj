@@ -9,6 +9,7 @@
         <RootNamespace>BilibiliLiveAccompanyRecord</RootNamespace>
         <AssemblyName>BilibiliLiveAccompanyRecord</AssemblyName>
         <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+        <ApplicationIcon>favicon.ico</ApplicationIcon>
         <FileAlignment>512</FileAlignment>
         <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
         <Deterministic>true</Deterministic>
@@ -87,11 +88,6 @@
     </ItemGroup>
     <ItemGroup>
         <None Include="App.config" />
-    </ItemGroup>
-    <ItemGroup>
-      <Content Include="guard.json" />
-      <Content Include="medalWall.json" />
-      <Content Include="wealth.json" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

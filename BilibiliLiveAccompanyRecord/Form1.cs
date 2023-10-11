@@ -63,13 +63,14 @@ namespace BilibiliLiveAccompanyRecord {
         //将DataGridView中的数据导出为Excel表格
         private void ExportButton_Click(object sender, EventArgs e) {
             FileDialog dialog = new SaveFileDialog();
+            string nameAndUid = UsernameLabel.Text + "（" + UidInputBox.Text + "）";
             dialog.Filter = @"XLSX 工作表(*.xlsx)|*.xlsx";
             dialog.Title = @"选择保存文件";
             dialog.DefaultExt = "xlsx";
             dialog.AddExtension = true;
             dialog.RestoreDirectory = true;
             dialog.FileName = DateTime.Now.ToString(
-                "陪伴记录数据_" + UidInputBox.Text + "_yyyy-MM-dd_hh.mm.ss");
+                "陪伴记录数据_" + nameAndUid + "_yyyy-MM-dd_hh.mm.ss");
             if (dialog.ShowDialog() == DialogResult.OK) {
                 int offset = checkBox1.Checked ? 0 : 1;
                 FileInfo newFile = new FileInfo(dialog.FileName);
@@ -110,15 +111,6 @@ namespace BilibiliLiveAccompanyRecord {
                 if (dialogResult == DialogResult.Yes) {
                     Process.Start(dialog.FileName);
                 }
-            }
-        }
-
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e) {
-            if (e.ColumnIndex == 2) {
-                Color backColor = dataGridView1[2, e.RowIndex].Style.BackColor;
-                Color foreColor = dataGridView1[2, e.RowIndex].Style.ForeColor;
-                dataGridView1[2, e.RowIndex].Style.SelectionBackColor = backColor;
-                dataGridView1[2, e.RowIndex].Style.SelectionForeColor = foreColor;
             }
         }
 
@@ -175,7 +167,7 @@ namespace BilibiliLiveAccompanyRecord {
                         dataGridView1[2, i].Style.BackColor = DecimalToColor(medalColor);
                     }
                 }
-
+                
                 //只有当前所登录账号才能获取到大航海信息以及个人中心中的粉丝勋章的相关信息；
                 //由于获取过程相对耗时，当输入的UID与Cookie中的UID不匹配时，则会停止获取，以节省时间。
                 //而且后面的信息也只有登录与UID相符的账号才能查询（也就是本人才能查询）。
@@ -188,7 +180,7 @@ namespace BilibiliLiveAccompanyRecord {
                         //为防止频繁访问造成风控，所以每隔100个粉丝勋章就延迟1秒
                         Thread.Sleep(i % 100 == 0 ? 1000 : 100);
                     }
-
+                    
                     if (GetHomeMedalTotalPage() > 0) {
                         JArray jArray = new JArray();
                         //遍历每一页的信息，并将它们合并成一个整体。

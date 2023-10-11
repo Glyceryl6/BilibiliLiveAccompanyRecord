@@ -30,19 +30,6 @@
             this.CookieInputBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.index = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.medal_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.level = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.medal_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.intimacy = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.today_intimacy = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.receive_time = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.score = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.is_lighted = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.guard_extra_gold = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.watch_time = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.send_bar = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label3 = new System.Windows.Forms.Label();
             this.UidInputBox = new System.Windows.Forms.TextBox();
             this.QueryButton = new System.Windows.Forms.Button();
@@ -66,6 +53,19 @@
             this.label10 = new System.Windows.Forms.Label();
             this.FullIntimacyLabel = new System.Windows.Forms.Label();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.index = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.medal_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.level = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.medal_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.intimacy = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.today_intimacy = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.receive_time = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.score = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.is_lighted = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.guard_extra_gold = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.watch_time = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.send_bar = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -127,112 +127,10 @@
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridView1.RowTemplate.Height = 27;
-            this.dataGridView1.Size = new System.Drawing.Size(939, 450);
+            this.dataGridView1.Size = new System.Drawing.Size(939, 350);
             this.dataGridView1.TabIndex = 10;
-            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView1.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_ColumnHeaderMouseClick);
             this.dataGridView1.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.dataGridView1_SortCompare);
-            // 
-            // index
-            // 
-            this.index.HeaderText = "序号";
-            this.index.Name = "index";
-            this.index.ReadOnly = true;
-            this.index.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.index.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.index.Width = 50;
-            // 
-            // name
-            // 
-            this.name.HeaderText = "主播昵称";
-            this.name.Name = "name";
-            this.name.ReadOnly = true;
-            this.name.Width = 150;
-            // 
-            // medal_name
-            // 
-            this.medal_name.HeaderText = "勋章名";
-            this.medal_name.Name = "medal_name";
-            this.medal_name.ReadOnly = true;
-            this.medal_name.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // level
-            // 
-            this.level.HeaderText = "等级";
-            this.level.Name = "level";
-            this.level.ReadOnly = true;
-            this.level.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.level.Width = 80;
-            // 
-            // medal_id
-            // 
-            this.medal_id.HeaderText = "勋章ID";
-            this.medal_id.Name = "medal_id";
-            this.medal_id.ReadOnly = true;
-            this.medal_id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // intimacy
-            // 
-            this.intimacy.HeaderText = "亲密度";
-            this.intimacy.Name = "intimacy";
-            this.intimacy.ReadOnly = true;
-            this.intimacy.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.intimacy.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.intimacy.Width = 120;
-            // 
-            // today_intimacy
-            // 
-            this.today_intimacy.HeaderText = "今日亲密度";
-            this.today_intimacy.Name = "today_intimacy";
-            this.today_intimacy.ReadOnly = true;
-            this.today_intimacy.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.today_intimacy.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.today_intimacy.Width = 140;
-            // 
-            // receive_time
-            // 
-            this.receive_time.HeaderText = "获得时间";
-            this.receive_time.Name = "receive_time";
-            this.receive_time.ReadOnly = true;
-            this.receive_time.Width = 180;
-            // 
-            // score
-            // 
-            this.score.HeaderText = "积分";
-            this.score.Name = "score";
-            this.score.ReadOnly = true;
-            // 
-            // is_lighted
-            // 
-            this.is_lighted.HeaderText = "勋章状态";
-            this.is_lighted.Name = "is_lighted";
-            this.is_lighted.ReadOnly = true;
-            // 
-            // guard_extra_gold
-            // 
-            this.guard_extra_gold.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.guard_extra_gold.HeaderText = "累计消费电池";
-            this.guard_extra_gold.Name = "guard_extra_gold";
-            this.guard_extra_gold.ReadOnly = true;
-            this.guard_extra_gold.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.guard_extra_gold.Width = 124;
-            // 
-            // watch_time
-            // 
-            this.watch_time.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.watch_time.HeaderText = "累计发送弹幕";
-            this.watch_time.Name = "watch_time";
-            this.watch_time.ReadOnly = true;
-            this.watch_time.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.watch_time.Width = 124;
-            // 
-            // send_bar
-            // 
-            this.send_bar.HeaderText = "累计观看时间";
-            this.send_bar.Name = "send_bar";
-            this.send_bar.ReadOnly = true;
-            this.send_bar.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.send_bar.Width = 140;
             // 
             // label3
             // 
@@ -417,7 +315,7 @@
             // 
             this.ExportButton.Enabled = false;
             this.ExportButton.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ExportButton.Location = new System.Drawing.Point(22, 174);
+            this.ExportButton.Location = new System.Drawing.Point(22, 173);
             this.ExportButton.Name = "ExportButton";
             this.ExportButton.Size = new System.Drawing.Size(240, 32);
             this.ExportButton.TabIndex = 30;
@@ -491,12 +389,113 @@
             this.checkBox2.Text = "仅查询粉丝勋章墙";
             this.checkBox2.UseVisualStyleBackColor = true;
             // 
+            // index
+            // 
+            this.index.HeaderText = "序号";
+            this.index.Name = "index";
+            this.index.ReadOnly = true;
+            this.index.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.index.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.index.Width = 50;
+            // 
+            // name
+            // 
+            this.name.HeaderText = "主播昵称";
+            this.name.Name = "name";
+            this.name.ReadOnly = true;
+            this.name.Width = 150;
+            // 
+            // medal_name
+            // 
+            this.medal_name.HeaderText = "勋章名";
+            this.medal_name.Name = "medal_name";
+            this.medal_name.ReadOnly = true;
+            this.medal_name.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // level
+            // 
+            this.level.HeaderText = "等级";
+            this.level.Name = "level";
+            this.level.ReadOnly = true;
+            this.level.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.level.Width = 80;
+            // 
+            // medal_id
+            // 
+            this.medal_id.HeaderText = "勋章ID";
+            this.medal_id.Name = "medal_id";
+            this.medal_id.ReadOnly = true;
+            this.medal_id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // intimacy
+            // 
+            this.intimacy.HeaderText = "亲密度";
+            this.intimacy.Name = "intimacy";
+            this.intimacy.ReadOnly = true;
+            this.intimacy.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.intimacy.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.intimacy.Width = 120;
+            // 
+            // today_intimacy
+            // 
+            this.today_intimacy.HeaderText = "今日亲密度";
+            this.today_intimacy.Name = "today_intimacy";
+            this.today_intimacy.ReadOnly = true;
+            this.today_intimacy.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.today_intimacy.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.today_intimacy.Width = 140;
+            // 
+            // receive_time
+            // 
+            this.receive_time.HeaderText = "获得时间";
+            this.receive_time.Name = "receive_time";
+            this.receive_time.ReadOnly = true;
+            this.receive_time.Width = 180;
+            // 
+            // score
+            // 
+            this.score.HeaderText = "积分";
+            this.score.Name = "score";
+            this.score.ReadOnly = true;
+            // 
+            // is_lighted
+            // 
+            this.is_lighted.HeaderText = "勋章状态";
+            this.is_lighted.Name = "is_lighted";
+            this.is_lighted.ReadOnly = true;
+            // 
+            // guard_extra_gold
+            // 
+            this.guard_extra_gold.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.guard_extra_gold.HeaderText = "累计消费电池";
+            this.guard_extra_gold.Name = "guard_extra_gold";
+            this.guard_extra_gold.ReadOnly = true;
+            this.guard_extra_gold.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.guard_extra_gold.Width = 124;
+            // 
+            // watch_time
+            // 
+            this.watch_time.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.watch_time.HeaderText = "累计发送弹幕";
+            this.watch_time.Name = "watch_time";
+            this.watch_time.ReadOnly = true;
+            this.watch_time.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.watch_time.Width = 124;
+            // 
+            // send_bar
+            // 
+            this.send_bar.HeaderText = "累计观看时间";
+            this.send_bar.Name = "send_bar";
+            this.send_bar.ReadOnly = true;
+            this.send_bar.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.send_bar.Width = 140;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(982, 853);
+            this.ClientSize = new System.Drawing.Size(982, 753);
             this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.FullIntimacyLabel);
@@ -560,8 +559,6 @@
         private System.Windows.Forms.Label LightedCountLabel;
 
         private System.Windows.Forms.Label label2;
-
-        private System.Windows.Forms.Label StatisticsLabel;
 
         private System.Windows.Forms.DataGridViewTextBoxColumn index;
 
