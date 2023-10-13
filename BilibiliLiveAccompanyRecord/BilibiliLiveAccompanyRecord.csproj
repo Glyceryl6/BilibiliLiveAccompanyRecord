@@ -98,8 +98,8 @@
         <None Include="App.config" />
     </ItemGroup>
     <ItemGroup>
-      <Content Include="EPPlus.dll" />
-      <Content Include="Newtonsoft.Json.dll" />
+      <EmbeddedResource Include="EPPlus.dll" />
+      <EmbeddedResource Include="Newtonsoft.Json.dll" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

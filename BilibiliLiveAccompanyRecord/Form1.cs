@@ -70,7 +70,7 @@ namespace BilibiliLiveAccompanyRecord {
             dialog.AddExtension = true;
             dialog.RestoreDirectory = true;
             dialog.FileName = DateTime.Now.ToString(
-                "陪伴记录数据_" + nameAndUid + "_yyyy-MM-dd_hh.mm.ss");
+                "陪伴记录数据_" + nameAndUid + "_yyyy-MM-dd_HH.mm.ss");
             if (dialog.ShowDialog() == DialogResult.OK) {
                 int offset = checkBox1.Checked ? 0 : 1;
                 FileInfo newFile = new FileInfo(dialog.FileName);
