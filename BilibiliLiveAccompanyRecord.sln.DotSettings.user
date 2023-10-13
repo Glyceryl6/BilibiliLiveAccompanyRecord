@@ -1,4 +1,6 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=C_003A_005CUsers_005Cglyceryl_005CDesktop_005CCSharpPlace_005CBilibiliLiveAccompanyRecord_005CBilibiliLiveAccompanyRecord_005Cbin_005CDebug_005CEPPlus_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=C_003A_005CUsers_005Cglyceryl_005CDesktop_005CCSharpPlace_005CBilibiliLiveAccompanyRecord_005CBilibiliLiveAccompanyRecord_005Cbin_005CDebug_005CNewtonsoft_002EJson_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;&#xD;
   &lt;Assembly Path="C:\Users\glyceryl\Desktop\CSharpPlace\BilibiliLiveAccompanyRecord\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll" /&gt;&#xD;
   &lt;Assembly Path="C:\Users\glyceryl\Desktop\CSharpPlace\BilibiliLiveAccompanyRecord\packages\EPPlus.4.1.0\lib\net40\EPPlus.dll" /&gt;&#xD;
