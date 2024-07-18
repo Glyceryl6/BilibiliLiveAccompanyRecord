@@ -125,84 +125,84 @@ namespace BilibiliLiveAccompanyRecord {
 
         //将标准的时分秒格式转换成对应的时间戳，以便于进行排序
         private void dataGridView1_SortCompare(object sender, DataGridViewSortCompareEventArgs e) {
-            if (e.Column.Index == 12) {
-                int second1 = FormatTimeToTimeStamp(e.CellValue1);
-                int second2 = FormatTimeToTimeStamp(e.CellValue2);
-                e.SortResult = second1 > second2 ? 1 : second1 == second2 ? 0 : -1;
-                e.Handled = true;
-            }
+            if (e.Column.Index != 12) return;
+            int second1 = FormatTimeToTimeStamp(e.CellValue1);
+            int second2 = FormatTimeToTimeStamp(e.CellValue2);
+            e.SortResult = second1 > second2 ? 1 : second1 == second2 ? 0 : -1;
+            e.Handled = true;
         }
 
         private void GetMedalWall() {
             string biliUrl = "https://api.live.bilibili.com/xlive/web-ucenter/user/MedalWall?target_id=" + UidInputBox.Text;
             JObject jObject = GetJsonFromUrl(biliUrl, CookieInputBox.Text);
             if (jObject["code"] != null && int.Parse(jObject["code"].ToString()) == 0) {
-                JArray medalList = JArray.Parse(jObject["data"]["list"].ToString());
-                UsernameLabel.Text = jObject["data"]["name"]?.ToString();
-                dataGridView1.Rows.Add(medalList.Count);
-                //根据所输入的UID来获取对应用户粉丝勋章墙的相关信息；
-                //如果该用户并未公开其粉丝勋章墙，则会获取失败；
-                //非本浏览器所登录的账号最多只能获取到前200个粉丝勋章的信息。
-                string closeSpaceMedal = jObject["data"]["close_space_medal"]?.ToString();
-                string onlyShowWearing = jObject["data"]["only_show_wearing"]?.ToString();
-                if (onlyShowWearing != null && closeSpaceMedal != null && (closeSpaceMedal.Equals("1") || onlyShowWearing.Equals("1"))) {
-                    MessageBox.Show(@"该用户并未公开粉丝勋章墙，获取失败！", @"错误", MessageBoxButtons.OK, MessageBoxIcon.Error); return;
-                }
-                
-                for (int i = 0; i < medalList.Count; i++) {
-                    JObject tempObject = JObject.Parse(medalList[i].ToString());
-                    dataGridView1[1, i].Value = tempObject["target_name"]?.ToString();
-                    dataGridView1[2, i].Value = tempObject["medal_info"]?["medal_name"]?.ToString();
-                    dataGridView1[3, i].Value = int.Parse(tempObject["medal_info"]["level"].ToString());
-                    dataGridView1[4, i].Value = int.Parse(tempObject["medal_info"]["medal_id"].ToString());
-                    string currentIntimacy = tempObject["medal_info"]?["intimacy"]?.ToString();
-                    string nextIntimacy = tempObject["medal_info"]?["next_intimacy"]?.ToString();
-                    dataGridView1[5, i].Value = currentIntimacy + "/" + nextIntimacy;
-                    string todayFeed = tempObject["medal_info"]?["today_feed"]?.ToString();
-                    string dayLimit = tempObject["medal_info"]?["day_limit"]?.ToString();
-                    dataGridView1[6, i].Value = todayFeed + "/" + dayLimit;
-                    dataGridView1[0, i].Value = i + 1;
-                    if (!CookieInputBox.Text.Contains("DedeUserID=" + UidInputBox.Text) || checkBox2.Checked) {
-                        int medalColor = int.Parse(tempObject["medal_info"]["medal_color_start"].ToString());
-                        dataGridView1[2, i].Style.BackColor = DecimalToColor(medalColor);
-                    }
-                }
-                
-                //只有当前所登录账号才能获取到大航海信息以及个人中心中的粉丝勋章的相关信息；
-                //由于获取过程相对耗时，当输入的UID与Cookie中的UID不匹配时，则会停止获取，以节省时间。
-                //而且后面的信息也只有登录与UID相符的账号才能查询（也就是本人才能查询）。
+                UsernameLabel.Text = jObject["data"]?["name"]?.ToString();
                 if (CookieInputBox.Text.Contains("DedeUserID=" + UidInputBox.Text) && !checkBox2.Checked) {
-                    for (int i = 0; i < medalList.Count; i++) {
-                        JObject tempObject = JObject.Parse(medalList[i].ToString());
-                        int currentIntimacy = int.Parse(tempObject["medal_info"]["intimacy"].ToString());
-                        string uid = tempObject["medal_info"]?["target_id"]?.ToString();
-                        GetGuardActive(uid, i, currentIntimacy);
-                        //为防止频繁访问造成风控，所以每隔100个粉丝勋章就延迟1秒
-                        Thread.Sleep(i % 100 == 0 ? 1000 : 100);
+                    //由于B站提供的API最多只能查询前200个勋章，所以这里通过主站个人空间勋章列表；
+                    //只有查询的uid是当前登录用户的uid，才会执行此处的代码；
+                    //由于获取过程相对耗时，当输入的UID与Cookie中的UID不匹配时，则会停止获取，以节省时间。
+                    if (GetHomeMedalTotalPage() <= 0) return;
+                    JArray jArray = new JArray();
+                    //遍历每一页的信息，并将它们合并成一个整体。
+                    for (int i = 1; i <= GetHomeMedalTotalPage(); i++) {
+                        jArray.Merge(GetHomeMedalArrayByPage(i));
                     }
                     
-                    if (GetHomeMedalTotalPage() > 0) {
-                        JArray jArray = new JArray();
-                        //遍历每一页的信息，并将它们合并成一个整体。
-                        for (int i = 1; i <= GetHomeMedalTotalPage(); i++) {
-                            jArray.Merge(GetHomeMedalArrayByPage(i));
-                        }
-                        
-                        foreach (JToken token in jArray) {
-                            JObject tempObject = JObject.Parse(token.ToString());
-                            int medalId = int.Parse(tempObject["medal_id"].ToString());
-                            string receiveTime = tempObject["receive_time"]?.ToString();
-                            int totalScore = int.Parse(tempObject["score"].ToString());
-                            bool isLighted = tempObject["is_lighted"].ToString().Equals("1");
-                            int medalColor = int.Parse(tempObject["medal_color_start"].ToString());
-                            for (int j = 0; j < medalList.Count; j++) {
-                                if (int.Parse(dataGridView1[4, j].Value.ToString()) == medalId) {
-                                    dataGridView1[2, j].Style.BackColor = DecimalToColor(medalColor);
-                                    dataGridView1[7, j].Value = receiveTime;
-                                    dataGridView1[8, j].Value = totalScore;
-                                    dataGridView1[9, j].Value = isLighted ? "点亮" : "熄灭";
-                                }
-                            }
+                    dataGridView1.Rows.Add(jArray.Count);
+                    for (var i = 0; i < jArray.Count; i++) {
+                        JObject tempObject = JObject.Parse(jArray[i].ToString());
+                        JToken isLightedToken = tempObject["is_lighted"];
+                        var targetId = tempObject["target_id"]?.ToString();
+                        var currentIntimacy = tempObject["intimacy"]?.ToString();
+                        var nextIntimacy = tempObject["next_intimacy"]?.ToString();
+                        bool isLighted = isLightedToken != null && isLightedToken.ToString().Equals("1");
+                        int medalColor = int.Parse(tempObject["medal_color_start"]?.ToString() ?? "0");
+                        dataGridView1[1, i].Value = tempObject["target_name"]?.ToString();
+                        dataGridView1[2, i].Value = tempObject["medal_name"]?.ToString();
+                        dataGridView1[2, i].Style.BackColor = DecimalToColor(medalColor);
+                        dataGridView1[3, i].Value = int.Parse(tempObject["medal_level"]?.ToString() ?? "0");
+                        dataGridView1[4, i].Value = int.Parse(tempObject["medal_id"]?.ToString() ?? "0");
+                        dataGridView1[5, i].Value = currentIntimacy + "/" + nextIntimacy;
+                        var todayFeed = tempObject["today_feed"]?.ToString();
+                        var dayLimit = tempObject["day_limit"]?.ToString();
+                        dataGridView1[6, i].Value = todayFeed + "/" + dayLimit;
+                        dataGridView1[7, i].Value = tempObject["receive_time"]?.ToString();
+                        dataGridView1[8, i].Value = int.Parse(tempObject["score"]?.ToString() ?? "0");
+                        dataGridView1[9, i].Value = isLighted ? "点亮" : "熄灭";
+                        dataGridView1[0, i].Value = i + 1;
+                        if (currentIntimacy != null) GetGuardActive(targetId, i, int.Parse(currentIntimacy));
+                        Thread.Sleep(i % 100 == 0 ? 1000 : 100);
+                    }
+                } else {
+                    //如果查询的不是当前用户，或者勾选了“只查询粉丝勋章墙”，则执行此处代码；
+                    //由于API的限制，只能获取到前200个勋章，以及这些勋章的亲密度；
+                    //根据所输入的UID来获取对应用户粉丝勋章墙的相关信息；
+                    //如果该用户并未公开其粉丝勋章墙，则会获取失败。
+                    var closeSpaceMedal = jObject["data"]?["close_space_medal"]?.ToString();
+                    var onlyShowWearing = jObject["data"]?["only_show_wearing"]?.ToString();
+                    if (onlyShowWearing != null && closeSpaceMedal != null && (closeSpaceMedal.Equals("1") || onlyShowWearing.Equals("1"))) {
+                        MessageBox.Show(@"该用户并未公开粉丝勋章墙，获取失败！", @"错误", MessageBoxButtons.OK, MessageBoxIcon.Error); return;
+                    }
+                    
+                    JArray medalList = JArray.Parse(jObject["data"]["list"].ToString());
+                    dataGridView1.Rows.Add(medalList.Count);
+                    for (int i = 0; i < medalList.Count; i++) {
+                        JObject tempObject = JObject.Parse(medalList[i].ToString());
+                        JToken medalInfoToken = tempObject["medal_info"];
+                        dataGridView1[1, i].Value = tempObject["target_name"]?.ToString();
+                        dataGridView1[2, i].Value = medalInfoToken?["medal_name"]?.ToString();
+                        dataGridView1[3, i].Value = int.Parse(medalInfoToken?["level"]?.ToString() ?? "0");
+                        dataGridView1[4, i].Value = int.Parse(medalInfoToken?["medal_id"]?.ToString() ?? "0");
+                        var currentIntimacy = medalInfoToken?["intimacy"]?.ToString();
+                        var nextIntimacy = medalInfoToken?["next_intimacy"]?.ToString();
+                        dataGridView1[5, i].Value = currentIntimacy + "/" + nextIntimacy;
+                        var todayFeed = medalInfoToken?["today_feed"]?.ToString();
+                        var dayLimit = medalInfoToken?["day_limit"]?.ToString();
+                        dataGridView1[6, i].Value = todayFeed + "/" + dayLimit;
+                        dataGridView1[0, i].Value = i + 1;
+                        if (!CookieInputBox.Text.Contains("DedeUserID=" + UidInputBox.Text) || checkBox2.Checked) {
+                            int medalColor = int.Parse(medalInfoToken?["medal_color_start"]?.ToString() ?? "0");
+                            dataGridView1[2, i].Style.BackColor = DecimalToColor(medalColor);
                         }
                     }
                 }
@@ -217,25 +217,23 @@ namespace BilibiliLiveAccompanyRecord {
             JObject jObject = GetJsonFromUrl(biliUrl, CookieInputBox.Text);
             if (jObject["code"] != null && int.Parse(jObject["code"].ToString()) == 0) {
                 string username = jObject["data"]?["username"]?.ToString();
-                if (username != null && username.Equals(UsernameLabel.Text)) {
-                    int medalLevel = int.Parse(jObject["data"]["up_medal"]["level"].ToString());
-                    int guardExtraGold = int.Parse(jObject["data"]["up_medal"]["guard_extra_gold"].ToString());
+                if (username != null && username.Equals(UsernameLabel.Text) && jObject["data"] != null) {
+                    int medalLevel = int.Parse(jObject["data"]["up_medal"]?["level"]?.ToString() ?? "0");
+                    int guardExtraGold = int.Parse(jObject["data"]["up_medal"]?["guard_extra_gold"]?.ToString() ?? "0");
                     dataGridView1[10, row].Value = medalLevel > 20 ? GetTotalGuardIntimacy(medalLevel, currentIntimacy) : guardExtraGold / 100;
-                    dataGridView1[11, row].Value = int.Parse(jObject["data"]["send_bar"].ToString());
-                    dataGridView1[12, row].Value = TimeStampToFormatTime(int.Parse(jObject["data"]["watch_time"].ToString()));
+                    dataGridView1[11, row].Value = int.Parse(jObject["data"]["send_bar"]?.ToString() ?? "0");
+                    dataGridView1[12, row].Value = TimeStampToFormatTime(int.Parse(jObject["data"]["watch_time"]?.ToString() ?? "0"));
                 }
             }
         }
 
         //获取个人中心的粉丝勋章中所领取的勋章的页数
         private int GetHomeMedalTotalPage() {
-            string biliUrl = "https://api.live.bilibili.com/fans_medal/v1/fans_medal/get_home_medals";
+            const string biliUrl = "https://api.live.bilibili.com/fans_medal/v1/fans_medal/get_home_medals";
             JObject jObject = GetJsonFromUrl(biliUrl, CookieInputBox.Text);
-            if (jObject["code"] != null && int.Parse(jObject["code"].ToString()) == 0) {
-                string totalPage = jObject["data"]?["total_page"]?.ToString();
-                return totalPage != null ? int.Parse(totalPage) : 0;
-            }
-            return 0;
+            if (jObject["code"] == null || int.Parse(jObject["code"].ToString()) != 0) return 0;
+            var totalPage = jObject["data"]?["total_page"]?.ToString();
+            return totalPage != null ? int.Parse(totalPage) : 0;
         }
 
         //获取某页个人中心的粉丝勋章信息；
@@ -244,11 +242,9 @@ namespace BilibiliLiveAccompanyRecord {
         private JArray GetHomeMedalArrayByPage(int page) {
             string biliUrl = "https://api.live.bilibili.com/fans_medal/v1/fans_medal/get_home_medals?page=" + page;
             JObject jObject = GetJsonFromUrl(biliUrl, CookieInputBox.Text);
-            if (jObject["code"] != null && int.Parse(jObject["code"].ToString()) == 0) {
-                string list = jObject["data"]?["list"]?.ToString();
-                return list != null ? JArray.Parse(list) : null;
-            }
-            return null;
+            if (jObject["code"] == null || !jObject["code"].ToString().Equals("0")) return null;
+            string list = jObject["data"]?["list"]?.ToString();
+            return list != null ? JArray.Parse(list) : null;
         }
 
         //计算在大航海中消费的电池
@@ -262,7 +258,7 @@ namespace BilibiliLiveAccompanyRecord {
             return totalGuardIntimacy + currentIntimacy;
         }
 
-        //从获取链接中的Json文本内容
+        //获取链接中的Json文本内容
         private static JObject GetJsonFromUrl(string url, string cookie) {
             HttpWebRequest req = (HttpWebRequest) WebRequest.Create(url);
             req.Method = "GET";
@@ -274,7 +270,7 @@ namespace BilibiliLiveAccompanyRecord {
             StreamReader reader = new StreamReader(stream, false);
             return JObject.Parse(reader.ReadToEnd());
         }
-
+        
         private static Color DecimalToColor(int color) {
             return Color.FromArgb((color >> 16) & 255, (color >> 8) & 255, color & 255);
         }
